@@ -10,9 +10,6 @@ int eliminate(Matrix *mat, Matrix *b)
 	double TempMat[mat->r], TempVal[1];
 	int TV;
 
-	if (mat->data[0][0] == 0)
-		return 1;
-
 	TempMat[0] = mat->data[0][0];
 	TempMat[1] = 0;
 	for (int i = 0; i < mat->r; i++)
@@ -24,7 +21,7 @@ int eliminate(Matrix *mat, Matrix *b)
 		}
 	}
 
-	TempVal[1] = TV;
+	TV = TempVal[1];
 	for (int i = 0; i < mat->c; i++)
 	{
 		mat->data[0][i] = TempMat[i];
@@ -42,7 +39,7 @@ int eliminate(Matrix *mat, Matrix *b)
 			if (j > i)
 			{
 				Ratio = mat->data[j][i] / mat->data[i][i];
-				for (int k = 0; k < mat->data + 1; k++)
+				for (int k = 0; k < mat->r; k++)
 				{
 					mat->data[j][k] = mat->data[j][k] - Ratio * mat->data[i][k];
 				}

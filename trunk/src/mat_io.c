@@ -32,6 +32,7 @@ Matrix *readFromFile(char *fname)
 	else
 	{
 		fprintf(stderr, "Nie mogę otworzyć pliku o nazwie: %s\n", fname);
+
 	}
 
 	return mat;
@@ -53,28 +54,24 @@ void printToScreen(Matrix *mat)
 	printf("]\n");
 }
 
-Matrix *createMatrix(int r, int c)
-{
+Matrix * createMatrix(int r, int c) {
 	int i;
-	Matrix *mat = (Matrix *)malloc(sizeof(Matrix));
-	if (mat != NULL)
-	{
+	Matrix * mat = (Matrix*) malloc(sizeof(Matrix));
+	if (mat != NULL) {
 		mat->r = r;
 		mat->c = c;
-		mat->data = (double **)malloc(sizeof(double *) * r);
-		for (i = 0; i < r; i++)
-		{
-			mat->data[i] = (double *)malloc(sizeof(double) * c);
+		mat->data = (double**) malloc(sizeof(double*) * r);
+		for (i=0; i < r; i++) {
+				mat->data[i] = (double*) malloc(sizeof(double) * c);
 		}
 	}
 
 	return mat;
 }
 
-void freeMatrix(Matrix *mat)
-{
+void freeMatrix(Matrix * mat) {
 	int i;
-	for (i = 0; i < mat->r; i++)
+	for (i=0;i < mat->r; i++)
 		free(mat->data[i]);
 	free(mat->data);
 	free(mat);

@@ -49,17 +49,3 @@ int eliminate(Matrix *mat, Matrix *b)
 
 	return 0;
 }
-
-/*
-
-To juz prawie wszystko ale nie wolno nam zapomniec, ze
-
---------------------------------------------------------------------------------------------
-Materialy zostaly orpacowane w ramach realizacji programu latajacego potwora kodu spaghetti
-
-      'logo'
-Europejski, latajacy
-potwor kodu spaghetti
---------------------------------------------------------------------------------------------
-
-*/

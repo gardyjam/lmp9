@@ -1,5 +1,5 @@
 #include "gauss.h"
-
+#include <math.h>
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
@@ -7,61 +7,43 @@
 int eliminate(Matrix *mat, Matrix *b)
 {
 	int Ratio;
-	double TempMat[mat->r], TempVal[1];
-	int TV;
-
-	TempMat[0] = mat->data[0][0];
-	TempMat[1] = 0;
-	for (int i = 0; i < mat->r; i++)
-	{
-		if (TempVal[0] < mat->data[i][0])
-		{
-			TempVal[0] = mat->data[i][0];
-			TempVal[1] = i;
-		}
-	}
-
-	if (TempVal[1] != 0)
-	{
-		TV = TempVal[1];
-		for (int i = 0; i < mat->c; i++)
-		{
-			mat->data[0][i] = TempMat[i];
-			mat->data[0][i] = mat->data[TV][i];
-			mat->data[TV][i] = TempMat[i];
-		}
-	}
+	int i;
+	
 	if (mat->data[0][0] == 0)
 		return 1;
 
-	for (int i = 0; i < mat->r; i++)
+	for (i = 0; i < mat->c; i++)  
 	{
-		for (int j = 0; j < mat->c; j++)
-		{
-			if (j > i)
+		int t;
+		int tempR = i;
+		double tempV = mat->data[tempR][i];
+		double pom;
+				
+		for (t = i+1; t < mat->r; t++ ) 
+			if (fabs(mat->data[t][i]) > tempV)
 			{
-				Ratio = mat->data[j][i] / mat->data[i][i];
-				for (int k = 0; k < mat->r; k++)
-				{
-					mat->data[j][k] = mat->data[j][k] - Ratio * mat->data[i][k];
-				}
+				tempV = mat->data[t][i];
+				tempR = t;
 			}
+		if ( tempR != i )
+			for (int w=0; w <= mat->c; w++)
+			{
+				pom = mat->data[i][w];
+				mat->data[i][w] = mat->data[t][w];
+				mat->data[t][w] = pom;
+			}	
+
+		for (int j = i+1; j < mat->r; j++) 
+		{
+			Ratio = mat->data[j][i] / mat->data[i][i];
+			for (int k = i; k < mat->c; k++)
+			{
+				mat->data[j][k] -= Ratio * mat->data[i][k];
+			}	
+			mat->data[j][i] = 0; 
 		}
 	}
 
 	return 0;
 }
 
-/*
-
-To juz prawie wszystko ale nie wolno nam zapomniec, ze
-
---------------------------------------------------------------------------------------------
-Materialy zostaly orpacowane w ramach realizacji programu latajacego potwora kodu spaghetti
-
-      'logo'
-Europejski, latajacy
-potwor kodu spaghetti
---------------------------------------------------------------------------------------------
-
-*/

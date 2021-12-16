@@ -16,8 +16,7 @@ int main(int argc, char ** argv)
 	if (b == NULL) return -2;
 	printToScreen(A);
 	printToScreen(b);
-	//najpierw czyta macierze, jesli sa puste to wywala blad
-	
+
 	//metoda Gaussa
 	res = eliminate(A,b);
 	//tworzy macierz
@@ -39,3 +38,4 @@ int main(int argc, char ** argv)
 
 	return 0;
 }
+

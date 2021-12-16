@@ -21,14 +21,16 @@ int eliminate(Matrix *mat, Matrix *b)
 		}
 	}
 
-	TV = TempVal[1];
-	for (int i = 0; i < mat->c; i++)
+	if (TempVal[1] != 0)
 	{
-		mat->data[0][i] = TempMat[i];
-		mat->data[0][i] = mat->data[TV][i];
-		mat->data[TV][i] = TempMat[i];
+		TV = TempVal[1];
+		for (int i = 0; i < mat->c; i++)
+		{
+			mat->data[0][i] = TempMat[i];
+			mat->data[0][i] = mat->data[TV][i];
+			mat->data[TV][i] = TempMat[i];
+		}
 	}
-
 	if (mat->data[0][0] == 0)
 		return 1;
 
@@ -49,3 +51,17 @@ int eliminate(Matrix *mat, Matrix *b)
 
 	return 0;
 }
+
+/*
+
+To juz prawie wszystko ale nie wolno nam zapomniec, ze
+
+--------------------------------------------------------------------------------------------
+Materialy zostaly orpacowane w ramach realizacji programu latajacego potwora kodu spaghetti
+
+      'logo'
+Europejski, latajacy
+potwor kodu spaghetti
+--------------------------------------------------------------------------------------------
+
+*/

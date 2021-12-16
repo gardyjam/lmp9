@@ -24,7 +24,7 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	// pozostałe równania - od równania r-1 do 0
 	for( i = r-1; i >= 0; i-- ) {
 		sum = 0;
-		for( j = i+1; j <= c; j++ ) {
+		for( j = i+1; j < r; j++ ) {
 			sum += x->data[j][0] * mat->data[i][j];
 		}
 		if( mat->data[i][i] != 0 )

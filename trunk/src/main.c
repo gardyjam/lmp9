@@ -20,12 +20,17 @@ int main(int argc, char ** argv)
 	
 	//metoda Gaussa
 	res = eliminate(A,b);
+
 	//tworzy macierz
 	x = createMatrix(b->r, 1);
 	//backwards substitution
 	if (x != NULL) 
 	{
 		res = backsubst(x,A,b);
+		if (res == 1 )
+			fprintf(stderr, "Błąd dzielenia przez 0\n");
+		if (res == 2 )
+			fprintf(stderr, "Nieprawidłowe wymiary maierzy\n");
 
 		printToScreen(x);
 	  	freeMatrix(x);

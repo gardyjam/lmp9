@@ -21,7 +21,7 @@ Matrix *readFromFile(char *fname)
 		{
 			for (ir = 0; ir < r; ir++)
 				for (ic = 0; ic < c; ic++)
-					Fscanf(fin, "%lf", &(mat->data[ir][ic]));
+					fscanf(fin, "%lf", &(mat->data[ir][ic]));
 		}
 		else
 		{
